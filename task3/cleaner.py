@@ -1,5 +1,6 @@
 import nltk
 import string
+import re
 nltk.download("stopwords")
 from nltk.corpus import stopwords
 
@@ -13,8 +14,13 @@ def no_trash(data):
 	no_trash_data = data
 	for punct in punctuation_symbols:
 		no_trash_data = no_trash_data.replace(punct, ' ')
+	no_trash_data = no_trash_data.replace('\n', ' ')
+	no_trash_data = re.sub(' +', ' ', no_trash_data)
+	no_trash_data = no_trash_data.lower()
 	#print(no_trash_data)
+	
 	return no_trash_data
+	
 	
 def no_stopwords(data):
 	no_stopwords_data = data
