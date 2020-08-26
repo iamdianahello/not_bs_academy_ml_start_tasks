@@ -1,4 +1,5 @@
 import nltk
+import string
 nltk.download("stopwords")
 from nltk.corpus import stopwords
 
@@ -8,7 +9,10 @@ english_stopwords = stopwords.words('english')
 
 
 def no_trash(data):
-	no_trash_data = data.replace('\n', ' ').replace('*', '')
+	punctuation_symbols = string.punctuation
+	no_trash_data = data
+	for punct in punctuation_symbols:
+		no_trash_data = no_trash_data.replace(punct, ' ')
 	#print(no_trash_data)
 	return no_trash_data
 	
